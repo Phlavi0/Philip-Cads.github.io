@@ -1,15 +1,11 @@
 <template>
   <div class="topnav">
-    <router-link to="/">Home</router-link>
-    <router-link to="todo">Todo</router-link>
-    <router-link to="charmander">Charmander</router-link>
-    <router-link to="random-users">Random Users</router-link>
+    <router-link :to="{name: 'home'}">Home</router-link>
+    <router-link :to="{name: 'todo'}">Todo</router-link>
+    <router-link :to="{name: 'charmander'}">Charmander</router-link>
+    <router-link :to="{name: 'users'}">Random Users</router-link>
   </div>
 </template>
-
-<script>
-
-</script>
 
 <style>
 

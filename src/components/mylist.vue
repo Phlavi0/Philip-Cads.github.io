@@ -1,6 +1,7 @@
 <template>
-  <div class="home">
-  <div class="card center">
+  <div class="card center" style="background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);">
     <img class="center" src="public/todo.png" style="width: 25%;">
     
   <br>
@@ -19,26 +20,29 @@
   </form>
   <br>
 
-  <table>
+  <table class="table stripe">
       <tr>
         <th>Done</th>
         <th>ID</th>
         <th>Label</th>
         <th>Action</th>
       </tr>
-    <table-content  style="display: table-row-group"/>
+      <VueDraggableNext style="display: table-row-group">
+      <tr v-for="(todo, index) in todos" :key="index" >
+          <table-content :todo="todo"></table-content>
+      </tr>
+      </VueDraggableNext>
   </table>
-
-
-  </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { crud } from "@/composables/crud"
+import {VueDraggableNext} from "vue-draggable-next";
+import { useTodo } from "@/composables/use-todo"
 import TableContent from "@/components/table-content.vue";
-const {newTodo} = crud()
-const {saveTodo} = crud()
+const {newTodo} = useTodo()
+const {saveTodo} = useTodo()
+const {todos} = useTodo()
 </script>
 
 <style>
@@ -47,9 +51,9 @@ const {saveTodo} = crud()
   text-decoration: line-through;
 }
 .card{
-  padding-top: 20px;
+  margin-top: 20px;
+  padding: 20px;
   width: 50%;
-  background-color: black;
 }
 .center {
   display: block;
@@ -70,6 +74,10 @@ table {
 
 tr:nth-child(even) {
   background-color: darkslategrey;
+}
+
+tr{
+  color:white;
 }
 input[type=text], select {
   width: 100%;

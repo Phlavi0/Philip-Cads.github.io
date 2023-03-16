@@ -1,28 +1,34 @@
 <template>
-  <VueDraggableNext>
-    <tr v-for="(todo, index) in todos" :key="index" >
       <td ><input type="checkbox" v-model="todo.done"></td>
       <td>
-        {{todo.id}} | {{index}}
+        {{todo.id}}
       </td>
-      <td v-if="!todo.editable">
+      <td v-if="!editable">
         {{todo.label}}
-        <span :class="{ notdone: !todo.done }">✔️</span>
+        <span :class="{ notdone: !todo.done }">✅</span>
       </td>
       <td v-else>
         <input v-model="todo.label">
       </td>
       <td>
-        <button @click="todo.editable = !todo.editable">Edit</button>
-        <button @click="deleteTodo(todo)">Delete</button>
+        <button @click="editable = !editable" class="btn btn-primary btn-sm" >Edit</button>
+        <button @click="deleteTodo(todo)" class="btn btn-danger btn-sm">Delete</button>
       </td>
-    </tr>
-  </VueDraggableNext>
 </template>
 <script setup>
-import { VueDraggableNext } from 'vue-draggable-next'
-import { crud } from "@/composables/crud"
-
-const {todos} = crud()
-const {deleteTodo} = crud()
+import { useTodo } from "@/composables/use-todo"
+import {ref} from "vue";
+const {todos} = useTodo()
+const {deleteTodo} = useTodo()
+const editable = ref(false)
+defineProps({
+  todo: {
+    type: String
+  }
+})
 </script>
+<style>
+.btn{
+  margin-left: 5px;
+}
+</style>

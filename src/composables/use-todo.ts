@@ -4,20 +4,19 @@ import type {ToDo} from '@/composables/types'
 const todos = ref<ToDo[]>([])
 const newTodo = ref("")
 
-export function crud() {
+export function useTodo() {
     watch(todos, newVal => {
         localStorage.setItem('todos', JSON.stringify(newVal))
     }, {deep: true})
 
     onMounted(() => {
-        todos.value = JSON.parse(localStorage.getItem('todos').toString()) || []
+        todos.value = JSON.parse(localStorage.getItem('todos') || '[]')
     })
 
     function saveTodo() {
         todos.value.push({
             id: generateGuid(),
             label: newTodo.value,
-            editable: false,
             done: false
         })
         newTodo.value = ""
