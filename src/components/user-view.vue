@@ -10,11 +10,11 @@ Refactored code:
       <p class="card-title">{{ cardTitle }}</p>
       <h3 class="card-text">{{ subtitle }}</h3>
       <ul class="list-inline text-center" @mouseleave="resetSubtitle">
-        <li class="list-inline-item email" @mouseover="setSubtitle('my email is', result.email)"><font-awesome-icon icon="fa-regular fa-envelope fa-lg" size="lg"/></li>
-        <li class="list-inline-item telephone" @mouseover="setSubtitle('Phone', result.phone)"><font-awesome-icon icon="fa-solid fa-phone" size="lg"/></li>
-        <li class="list-inline-item address" @mouseover="setSubtitle('Loc', result.location.country)"><font-awesome-icon icon="fa-solid fa-map-marked" size="lg"/></li>
-        <li class="list-inline-item employeeID" @mouseover="setSubtitle('id', result.login.uuid)"><font-awesome-icon icon="fa-solid fa-user-secret" size="lg"/></li>
-        <li class="list-inline-item dob" @mouseover="setSubtitle('dob', result.dob.date)"><font-awesome-icon icon="fa-regular fa-envelope" size="lg"/></li>
+        <li class="list-inline-item email" @mouseover="setSubtitle('My email address is', result.email)"><font-awesome-icon icon="fa-regular fa-envelope fa-lg" size="lg"/></li>
+        <li class="list-inline-item telephone" @mouseover="setSubtitle('My phone number is', result.phone)"><font-awesome-icon icon="fa-solid fa-phone" size="lg"/></li>
+        <li class="list-inline-item address" @mouseover="setSubtitle('My address is', result.location.country)"><font-awesome-icon icon="fa-solid fa-map-marked" size="lg"/></li>
+        <li class="list-inline-item employeeID" @mouseover="setSubtitle('My ID number is', result.login.uuid)"><font-awesome-icon icon="fa-solid fa-user-secret" size="lg"/></li>
+        <li class="list-inline-item dob" @mouseover="setSubtitle('My birthday is', result.dob.date)"><font-awesome-icon icon="fa-regular fa-envelope" size="lg"/></li>
       </ul>
     </div>
   </div>
@@ -36,7 +36,7 @@ const props = defineProps({
 });
 
 const result = ref<RandomUser>();
-const cardTitle = ref('Hi I\'m');
+const cardTitle = ref('Hi, my name is');
 const subtitle = ref("");
 
 const cardStyle = computed(() => ({
